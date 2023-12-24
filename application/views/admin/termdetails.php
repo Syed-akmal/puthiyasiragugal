@@ -31,7 +31,10 @@ $customer_id = $customerloaninfo->customer_id;
             <div class="col-sm-4">
                 <h5> <b>Phone Number : </b> <?php echo ($customerloaninfo->phone_number); ?> </h5>
             </div>
-            <div class="col-sm-4"></div>
+            <div class="col-sm-4"><h5> <b>Total Loan Period : </b> <?php echo ($customerloaninfo->loan_period); ?> </h5></div>
+            <div class="col-sm-4"><h5> <b>Loan Cycle : </b> <?php echo ($customerloaninfo->loan_cycle); ?> </h5></div>
+            <div class="col-sm-4"><h5> <b>Balance Loan Period : </b> <?php echo ($customerloaninfo->remaining_loan_period); ?> </h5></div>
+            <div class="col-sm-4"><h5> <b>Amount Paid : </b> <?php echo ($customerloaninfo->total_term_amount); ?> </h5></div>
         </div>
     </div>
 </div>
@@ -71,8 +74,14 @@ $(document).ready(function() {
                     "orderable": false
                 },
                 {
-                    data: "collectionDate",
-                    "orderable": false
+                    "data": "collectionDate",
+                    "orderable": false,
+                    "render": function(data, type, row) {
+                        // Assuming "dob" is in a standard date format, you can format it to "d-m-y"
+                        var dobDate = new Date(data);
+                        var formattedDate = dobDate.getDate() + '-' + (dobDate.getMonth() + 1) + '-' + dobDate.getFullYear();
+                        return formattedDate;
+                    }
                 },
                 {
                     data: "status",

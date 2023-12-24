@@ -24,6 +24,7 @@ $father_dob = $userInfo->father_dob;
 $father_app_relation = $userInfo->father_app_relation;
 $father_address = $userInfo->father_address;
 $applicant_photo = $userInfo->applicant_photo;
+$applicant_photo2 = $userInfo->applicant_photo2;
 $aadhar_photo = $userInfo->aadhar_photo;
 $ration_photo = $userInfo->ration_photo;
 $co_applicant_photo = $userInfo->co_applicant_photo;
@@ -346,7 +347,7 @@ $created_date = $userInfo->created_date;
 
                 <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
-                        Applicant Photo:
+                        Applicant Photo 1:
                     </label>
                     <div class="col-lg-7">
                         <input type="file" class="" id="applicant_photo" name="applicant_photo" placeholder="Upload Applicant photo " multiple accept="image/png, image/gif, image/jpeg, image/jpg" value="<?php echo base_url(); ?>uploads/<?= $applicant_photo ?>">
@@ -354,6 +355,18 @@ $created_date = $userInfo->created_date;
 
                     </div>
                 </div>
+                
+                <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">
+                        Applicant Photo 2:
+                    </label>
+                    <div class="col-lg-7">
+                        <input type="file" class="" id="applicant_photo2" name="applicant_photo2" placeholder="Upload Applicant photo " multiple accept="image/png, image/gif, image/jpeg, image/jpg" value="<?php echo base_url(); ?>uploads/<?= $applicant_photo2 ?>">
+                        <input type="hidden" name="applicant_photo_existing2" value="<?= $applicant_photo2 ?>">
+
+                    </div>
+                </div>
+
                 <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
                         Aadhar Card Photo:

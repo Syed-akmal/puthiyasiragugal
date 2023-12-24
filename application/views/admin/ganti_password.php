@@ -15,13 +15,13 @@
         ?>
         <form action="<?php echo base_url().'admin/ganti_password_act'; ?>" method="post">
             <div class="form-group">
-                <label>Enter New Password</label>
+                <label> <b> Enter New Password </b></label>
                 <input class="form-control" type="password" placeholder="New Password" name="pass_baru">
                 <?php echo form_error('pass_baru'); ?>
             </div>
             <div class="form-group">
-                <label>Re-Enter New Password</label>
-                <input class="form-control" type="password" placeholder="Re-New Password" name="ulang_pass">
+                <label> <b> Confirm Password </b></label>
+                <input class="form-control" type="password" placeholder="Confirm Password" name="ulang_pass">
                 <?php echo form_error('ulang_pass'); ?>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>

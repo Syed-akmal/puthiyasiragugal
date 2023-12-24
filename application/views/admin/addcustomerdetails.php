@@ -46,6 +46,14 @@
                         <input type="text" class="form-control m-input" id="branch" name="branch" placeholder="Enter Branch " required>
                     </div>
                 </div>
+                <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">
+                        Name Group: 
+                    </label>
+                    <div class="col-lg-7">
+                        <input type="text" class="form-control m-input" id="namegroup" name="namegroup" placeholder="Enter Name Group ">
+                    </div>
+                </div>
 
                 <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
@@ -355,12 +363,22 @@
 
                 <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
-                        Applicant Photo: <small style="color: red;">*</small>
+                        Applicant Photo 1: <small style="color: red;">*</small>
                     </label>
                     <div class="col-lg-7">
                         <input type="file" class="" id="applicant_photo" name="applicant_photo" placeholder="Upload Applicant photo " multiple accept="image/png, image/gif, image/jpeg, image/jpg" required>
                     </div>
                 </div>
+                
+                <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">
+                        Applicant Photo 2: <small style="color: red;">*</small>
+                    </label>
+                    <div class="col-lg-7">
+                        <input type="file" class="" id="applicant_photo2" name="applicant_photo2" placeholder="Upload Applicant photo 2" multiple accept="image/png, image/gif, image/jpeg, image/jpg" required>
+                    </div>
+                </div>
+
                 <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
                         Aadhar Card Photo: <small style="color: red;">*</small>

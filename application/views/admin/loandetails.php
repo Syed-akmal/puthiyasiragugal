@@ -27,7 +27,7 @@ $phone = $customerinfo->phone_number;
 
 <style>
     .img-container {
-        height: 300px;
+        height: auto;
         /* Adjust the height as needed */
         overflow: hidden;
     }
@@ -49,6 +49,17 @@ $phone = $customerinfo->phone_number;
             </div>
         <?php else : ?>
             <p>No Applicant photo available</p>
+        <?php endif; ?>
+    </div>
+    <div class="col-md-3">
+        <?php if (!empty($applicant_photo2)) : ?>
+            <div class="img-container">
+                <a href="<?php echo base_url() . 'uploads/' . $applicant_photo2; ?>" download="ApplicantPhoto">
+                    <img src="<?php echo base_url() . 'uploads/' . $applicant_photo2; ?>" alt="Applicant Photo">
+                </a>
+            </div>
+        <?php else : ?>
+            <p>No Applicant 2 photo available</p>
         <?php endif; ?>
     </div>
     <div class="col-md-3">
@@ -106,6 +117,7 @@ $phone = $customerinfo->phone_number;
                         <div class="col-lg-7">
                             <input type="number" class="form-control m-input" id="loanamount" name="loanamount" placeholder="Enter Loan Amount " required>
                             <input type="hidden" name="id" id="id" value="<?= $id ?>">
+                            <input type="hidden" name="loan_status" id="loan_status" value="in_process">
                         </div>
                     </div>
 
@@ -125,7 +137,14 @@ $phone = $customerinfo->phone_number;
                         </div>
 
                     </div>
-
+                    <div class="form-group m-form__group row">
+                        <label class="col-lg-4 col-form-label">
+                            Loan Period: <small style="color: red;">*</small>
+                        </label>
+                        <div class="col-lg-7">
+                            <input type="number" class="form-control m-input" id="loan_period" name="loan_period" placeholder="Enter Loan Period " required>
+                        </div>
+                    </div>
                     <div class="form-group m-form__group row ">
 
                         <label class="col-lg-4 col-form-label">
@@ -197,12 +216,14 @@ $phone = $customerinfo->phone_number;
             <table id="loanTable" class="display  table-border table-hover table-striped " width="100%">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Loan Amount</th>
                         <th>Loan Cycle</th>
                         <!-- <th>Number Loan</th>
                         <th>Outstanding</th>
                         <th>Paid</th> -->
                         <th>Created On</th>
+                        <th>Status</th>
                         <th>Withness Signature 1</th>
                         <th>Withness Signature 2</th>
                         <th>Applicant Signature</th>
@@ -318,7 +339,12 @@ $phone = $customerinfo->phone_number;
         var loanData = <?php echo json_encode($loanInfo); ?>;
         var table = $('#loanTable').DataTable({
             data: loanData,
-            columns: [{
+            columns: [
+                {
+                    data: "id",
+                    "orderable": false
+                },
+                {
                     data: "loan_amount",
                     "orderable": false
                 },
@@ -327,9 +353,28 @@ $phone = $customerinfo->phone_number;
                     "orderable": false
                 },
                 {
-                    data: "created_on",
-                    "orderable": false
+                    "data": "created_on",
+                    "orderable": false,
+                    "render": function(data, type, row) {
+                        // Assuming "dob" is in a standard date format, you can format it to "d-m-y"
+                        var dobDate = new Date(data);
+                        var formattedDate = dobDate.getDate() + '-' + (dobDate.getMonth() + 1) + '-' + dobDate.getFullYear();
+                        return formattedDate;
+                    }
                 },
+                {
+                    data: "loan_status",
+                    render: function(data, type, row) {
+                        if (data === 'completed') {
+                            return '<span class="badge bg-success">Completed</span>';
+                        } else if (data === 'in_process') {
+                            return '<span class="badge bg-warning text-dark">In-Process</span>';
+                        } else {
+                            return '<span class="badge bg-warning text-dark">In-Process</span>';
+                        }
+                    }
+                },
+
                 {
                     data: "witness_signature_1",
                     render: function(data, type, row) {
