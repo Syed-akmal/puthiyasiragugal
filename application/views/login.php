@@ -33,10 +33,11 @@
 </head>
 
 <body class="text-center">
+ 
   <form class="form-signin" method="post" action="<?php echo base_url() . 'welcome/login'; ?>">
-    <div class="rotate-n-15">
+    <!-- <div class="rotate-n-15">
       <i class="fas fa-car fa-4x"></i>
-    </div>
+    </div> -->
     <h1 class="h3 mb-3 font-weight-normal">Puthiya Siragugal</h1>
     <?php
     if (isset($_GET['pesan'])) {
@@ -73,6 +74,9 @@
     <?php echo form_error('password'); ?>
     <button class="btn btn-lg btn-primary btn-block" value="Login" type="submit">Login</button>
     <p class="mt-5 mb-3 text-muted">&copy; ARBI Technology 2023</p>
+    <!-- <?php
+ echo( md5('hello'));
+ ?> -->
   </form>
 </body>
 
