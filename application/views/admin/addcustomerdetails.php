@@ -193,35 +193,6 @@
 
                 </div>
 
-
-
-                <!-- <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                        Loan Amount:
-                    </label>
-                    <div class="col-lg-7">
-                        <input type="number" class="form-control disable-scroll" id="loan_amount" name="loan_amount" placeholder="Enter Loan Amount">
-                    </div>
-
-                </div>
-
-                <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                        Loan Cycle:
-                    </label>
-                    <div class="col-lg-7">
-                        <select name="loan_cycle" id="loan_cycle" class='form-control m-input'>
-                            <option value="">Select type</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                            <option value="quarterly">Quarterly</option>
-                            <option value="half-yearly">Half-Yearly</option>
-                            <option value="yearly">Yearly</option>
-                        </select>
-                    </div>
-
-                </div> -->
-
                 <div class="form-group m-form__group row">
                     <button type="button" class="btn btn-secondary prev-section float-right">Back</button>
                     <button type="button" class="btn btn-primary next-section float-right">Next</button>
@@ -229,11 +200,6 @@
             </div>
             <!-- Page 3 -->
             <div class="form-section" data-section="3">
-                <!-- <div class="form-group m-form__group row">
-                    <h3> <b> Applicant Details </b></h3>
-                </div> -->
-
-
                 <!-- Co Applicant -->
                 <div class="form-group m-form__group row">
                     <h3> <b> Co-Applicant Details </b></h3>
@@ -313,21 +279,6 @@
                     </div>
 
                 </div>
-
-                <!-- <div class="form-group m-form__group row">
-								<label class="col-lg-4 col-form-label">
-									Father Gender:
-								</label>
-								<div class="col-lg-7">
-									<select name="Father_gender" id="Father_gender" class='form-control m-input'>
-										<option value="">Select type</option>
-										<option value="Male">Male</option>
-										<option value="Female">Female</option>
-										<option value="Others">Others</option>
-									</select>
-								</div>
-
-							</div> -->
 
                 <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
@@ -429,49 +380,7 @@
                     <input type="submit" class="btn btn-primary float-right" value="Submit" />
                 </div>
             </div>
-            <!-- Page 5 -->
-            <!-- <div class="form-section" data-section="5">
-                <div class="form-group m-form__group row">
-                    <h3> <b> Loan details </b></h3>
-                </div>
-                <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                        Occupation:
-                    </label>
-                    <div class="col-lg-7">
-                        <input type="text" class="form-control m-input" id="occupation" name="occupation" placeholder="Enter Occupation ">
-                    </div>
-                </div>
-                <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                        Number Loan:
-                    </label>
-                    <div class="col-lg-7">
-                        <input type="number" class="form-control disable-scroll m-input" id="numberLoan" name="numberLoan" placeholder="Enter Number Loan ">
-                    </div>
-                </div>
-                <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                        Outstanding:
-                    </label>
-                    <div class="col-lg-7">
-                        <input type="number" class="form-control disable-scroll m-input" id="outstanding" name="outstanding" placeholder="Enter Outstanding ">
-                    </div>
-                </div>
-                <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                        Paid:
-                    </label>
-                    <div class="col-lg-7">
-                        <input type="number" class="form-control disable-scroll m-input" id="Paid" name="Paid" placeholder="Enter Paid ">
-                    </div>
-                </div>
-                <div class="form-group m-form__group row">
-                    <button type="button" class="btn btn-secondary prev-section ">Back</button>
-                    <input type="submit" class="btn btn-primary float-right" value="Submit" />
-                </div>
-            </div> -->
-
+            
         </form>
     </div>
 </div>
@@ -482,14 +391,6 @@
     $(document).ready(function() {
         var currentSection = 1;
         var formSections = $(".form-section");
-
-        // $(".next-section").click(function() {
-        //     if (currentSection < formSections.length) {
-        //         formSections.eq(currentSection - 1).hide();
-        //         currentSection++;
-        //         formSections.eq(currentSection - 1).show();
-        //     }
-        // });
 
         $(".next-section").click(function() {
             if (currentSection < formSections.length) {

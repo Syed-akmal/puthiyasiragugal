@@ -1,68 +1,6 @@
 <?php
 class Customer_model extends CI_Model
 {
-    public function insert_image($image_path, $demo)
-    {
-        $data = array(
-            'image_path' => $image_path,
-            'demo' => $demo
-        );
-        $this->db->insert('demo', $data); // Insert data into "demo" table
-    }
-
-    public function get_image_data()
-    {
-        $query = $this->db->get('customer_details'); // Get data from "demo" table
-
-        if ($query->num_rows() > 0) {
-            $row = $query->row_array(); // Return result as associative array
-            return $row;
-        }
-
-        return array(); // Return an empty array if no data is found
-    }
-
-    public function getCustomerDetails()
-    {
-        $this->db->order_by('id', 'desc');
-        // Replace 'customer_details' with your actual table name
-        $query = $this->db->get('customer_details');
-
-        // Check if there are any results
-        if ($query->num_rows() > 0) {
-            return $query->result_array(); // Return customer details as an array
-        } else {
-            return array(); // Return an empty array if no data is found
-        }
-    }
-
-    public function getTotalRecords()
-    {
-        return $this->db->count_all('customer_details');
-    }
-
-    public function getFilteredRecords($postData)
-    {
-        $this->db->start_cache();
-
-        // Apply search term
-        if (!empty($postData['search']['value'])) {
-            $this->db->like('name', $postData['search']['value']);
-        }
-
-        // Apply sorting
-        // if (!empty($postData['order'])) {
-        //     $this->db->order_by($postData['columns'][$postData['order'][0]['column']]['data'], $postData['order'][0]['dir']);
-        // }
-
-        $this->db->stop_cache();
-
-        $this->db->limit($postData['length'], $postData['start']);
-        $query = $this->db->get('customer_details');
-
-        return $query->result_array();
-    }
-
     ##customer
     public function getcustomers($postData = null)
     {
@@ -73,8 +11,6 @@ class Customer_model extends CI_Model
         $start = $postData['start'];
         $rowperpage = $postData['length']; // Rows display per page
         $columnIndex = $postData['order'][0]['column']; // Column index
-        // $columnName = $postData['columns'][$columnIndex]['data']; // Column name
-        // $columnSortOrder = $postData['order'][0]['dir']; // asc or desc
         $searchValue = $postData['search']['value']; // Search value
 
         ## Search 
@@ -220,8 +156,6 @@ class Customer_model extends CI_Model
         $start = $postData['start'];
         $rowperpage = $postData['length']; // Rows display per page
         $columnIndex = $postData['order'][0]['column']; // Column index
-        // $columnName = $postData['columns'][$columnIndex]['data']; // Column name
-        // $columnSortOrder = $postData['order'][0]['dir']; // asc or desc
         $searchValue = $postData['search']['value']; // Search value
 
         ## Search 
@@ -271,8 +205,6 @@ class Customer_model extends CI_Model
                 'applicant_signature' => base_url('uploads/' . $record->applicant_signature),
                 'co_applicant_signature' => base_url('uploads/' . $record->co_applicant_signature),
                 'loanofficer_signature' => base_url('uploads/' . $record->loanofficer_signature),
-                // "loan" => '<a href="customerloandetails/' . $id = $record->id . '" class="btn  btn-primary"> <i class="fas fa-money-check" aria-hidden="true"></i>Loan</a>',
-                // "actions" => '<a href="editloandetails/' . $record->id . '" class="btn btn-sm btn-success"> <i class="fas fa-edit" aria-hidden="true"></i>Edit</a> <a href="Customer/deletedetails/' . $record->id . '"><button class="btn btn-sm btn-danger" onClick="return doconfirm();"><i class="fas fa-trash"></i>Delete</button></a>',
                 'actions' => '<a href="' . base_url("Customer/termdetails/{$record->id}") . '" class="btn btn-sm btn-primary"><i class="fas fa-plus" aria-hidden="true"></i>Term</a> <a href="' . base_url("Customer/editloandetails/{$record->id}") . '" class="btn btn-sm btn-success"><i class="fas fa-edit" aria-hidden="true"></i>Edit</a> <a href="' . base_url("Customer/deleteloandetails/{$record->id}") . '" class="btn btn-sm btn-danger" onClick="return doconfirm();"><i class="fas fa-trash"></i>Delete</a>'
             );
         }
@@ -305,44 +237,13 @@ class Customer_model extends CI_Model
     }
 
     ##Term info
-    // function getcustomerloaninfo($id)
-    // {
-    //     $this->db->select('loan.*, customer_details.name,customer_details.phone_number');
-    //     $this->db->from('loan');
-    //     $this->db->join('customer_details', 'loan.customer_id = customer_details.id');
-    //     $this->db->where('loan.id', $id);
-    //     $query = $this->db->get();
-    //     return $query->row();
-    // }
 
     public function getterminfo($id)
     {
         $this->db->where('loan_id', $id);
         return $this->db->get('term')->result();
     }
-    // function getcustomerloaninfo($id)
-    // {
-    //     $this->db->select('loan.*, customer_details.name, customer_details.phone_number, COUNT(term.id) as term_count');
-    //     $this->db->from('loan');
-    //     $this->db->join('customer_details', 'loan.customer_id = customer_details.id');
-    //     $this->db->join('term', 'loan.id = term.loan_id', 'left'); // Join with term table
-    //     $this->db->where('loan.id', $id);
-    //     $this->db->group_by('loan.id'); // Group by loan.id to get accurate term_count
-    //     $query = $this->db->get();
-
-    //     $result = $query->row();
-
-    //     // Calculate remaining loan period
-    //     if ($result) {
-    //         $loanPeriod = intval($result->loan_period);
-    //         $termCount = intval($result->term_count);
-
-    //         // Calculate remaining loan period by subtracting term count from loan period
-    //         $result->remaining_loan_period = max(0, $loanPeriod - $termCount);
-    //     }
-
-    //     return $result;
-    // }
+    
 
     function getcustomerloaninfo($id)
     {
@@ -449,19 +350,12 @@ class Customer_model extends CI_Model
 
 
             $data[] = array(
-                // 'id' => $record->id,
                 "name" => '<a href="usersavingsdetails/' . $id = $record->id . '">' . $record->name . '</a>',
-                // 'name' => $record->name,
                 'dob' => $record->dob,
                 'gender' => $record->gender,
-                // 'namegroup' => $record->namegroup,
-                // 'client_id' => $record->client_id,
                 'phone_number' => $record->phone_number,
-                // 'father_name' => $record->father_name,
                 'address' => $record->address,
                 'applicant_photo' => base_url('uploads/' . $record->applicant_photo),
-                // 'aadhar_photo' => base_url('uploads/' . $record->aadhar_photo),
-                // 'download' => '<a href="' . base_url('Customer/downloadCustomer/' . $record->id) . '" class="btn btn-info btn-sm">Download</a>', // Download button
                 "savings" => '<a href="customersavingsdetails/' . $id = $record->id . '" class="btn  btn-primary"> <i class="fas fa-money-check" aria-hidden="true"></i> Savings</a>',
                 "actions" => '<a href="editsavingsdetails/' . $id = $record->id . '" class="btn btn-sm btn-success"> <i class="fas fa-edit" aria-hidden="true"></i>Edit</a> <a href="deletesavingsdetails/' . $id = $record->id . '"><button class="btn btn-sm btn-danger" onClick="return doconfirm();"><i class="fas fa-trash"></i>Delete</button></a>',
             );
@@ -510,15 +404,6 @@ class Customer_model extends CI_Model
         return $this->db->get('account')->result();
     }
 
-    // function getcustomeraccountinfo($id)
-    // {
-    //     $this->db->select('account.*, saving_customer_details.name,saving_customer_details.phone_number');
-    //     $this->db->from('account');
-    //     $this->db->join('saving_customer_details', 'account.savingId = saving_customer_details.id');
-    //     $this->db->where('account.id', $id);
-    //     $query = $this->db->get();
-    //     return $query->row();
-    // }
     function getcustomeraccountinfo($id)
     {
         $this->db->select('account.*, saving_customer_details.name, saving_customer_details.phone_number, SUM(termaccount.amount) as total_amount');

@@ -3,33 +3,11 @@ $id = $userInfo->id;
 $name = $userInfo->name;
 $branch_code = $userInfo->branch_code;
 $branch = $userInfo->branch;
-// $namegroup = $userInfo->namegroup;
-// $client_id = $userInfo->client_id;
-// $centre_name = $userInfo->centre_name;
 $dob = $userInfo->dob;
 $gender = $userInfo->gender;
-// $occupation = $userInfo->occupation;
-// $app_relation = $userInfo->app_relation;
 $address = $userInfo->address;
 $phone_number = $userInfo->phone_number;
-// $additional_phone_number = $userInfo->additional_phone_number;
-// $marital_status = $userInfo->marital_status;
-// $religion = $userInfo->religion;
-// $co_applicant_name = $userInfo->co_applicant_name;
-// $co_applicant_dob = $userInfo->co_applicant_dob;
-// $co_applicant_gender = $userInfo->co_applicant_gender;
-// $co_applicant_app_relation = $userInfo->co_applicant_app_relation;
-// $co_applicant_address = $userInfo->co_applicant_address;
-// $father_name = $userInfo->father_name;
-// $father_dob = $userInfo->father_dob;
-// $father_app_relation = $userInfo->father_app_relation;
-// $father_address = $userInfo->father_address;
 $applicant_photo = $userInfo->applicant_photo;
-// $aadhar_photo = $userInfo->aadhar_photo;
-// $ration_photo = $userInfo->ration_photo;
-// $co_applicant_photo = $userInfo->co_applicant_photo;
-// $co_applicant_aadhar = $userInfo->co_applicant_aadhar;
-// $co_applicant_ration = $userInfo->co_applicant_ration;
 $created_date = $userInfo->created_date;
 
 ?>
@@ -75,14 +53,6 @@ $created_date = $userInfo->created_date;
                         <input type="text" class="form-control m-input" id="branch" name="branch" placeholder="Enter Branch " value="<?= $branch ?>">
                     </div>
                 </div>
-                <!-- <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                        Name Group:
-                    </label>
-                    <div class="col-lg-7">
-                        <input type="text" class="form-control m-input" id="namegroup" name="namegroup" placeholder="Enter Name Group ">
-                    </div>
-                </div> -->
                 <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
                         Customer Name: <small style="color: red;">*</small>

@@ -1,6 +1,7 @@
 <?php
 $id = $loanInfo->id;
 $loan_amount = $loanInfo->loan_amount;
+$totalloanamount = $loanInfo->totalloanamount;
 $loan_cycle = $loanInfo->loan_cycle;
 $created_on = $loanInfo->created_on;
 $witness_signature_1 = $loanInfo->witness_signature_1;
@@ -39,6 +40,15 @@ $loan_period = $loanInfo->loan_period;
                 <div class="col-lg-7">
                     <input type="number" class="form-control m-input" id="loanamount" name="loanamount" placeholder="Enter Loan Amount " value="<?= $loan_amount ?>" required>
                     <input type="hidden" class="form-control m-input" id="id" name="id" placeholder="Enter Loan Amount " value="<?= $id ?>" required>
+                </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+                <label class="col-lg-4 col-form-label">
+                   Total Loan Amount (Intrest): <small style="color: red;">*</small>
+                </label>
+                <div class="col-lg-7">
+                    <input type="number" class="form-control m-input" id="totalloanamount" name="totalloanamount" placeholder="Enter Total Loan Amount " value="<?= $totalloanamount ?>" required>
                 </div>
             </div>
 

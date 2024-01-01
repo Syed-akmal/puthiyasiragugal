@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 24, 2023 at 12:55 PM
+-- Generation Time: Jan 01, 2024 at 12:31 PM
 -- Server version: 8.0.31
 -- PHP Version: 7.4.33
 
@@ -101,26 +101,14 @@ CREATE TABLE IF NOT EXISTS `customer_details` (
   `co_applicant_ration` varchar(255) NOT NULL,
   `created_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Table structure for table `demo`
+-- Dumping data for table `customer_details`
 --
 
-DROP TABLE IF EXISTS `demo`;
-CREATE TABLE IF NOT EXISTS `demo` (
-  `image_path` varchar(255) NOT NULL,
-  `demo` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `demo`
---
-
-INSERT INTO `demo` (`image_path`, `demo`) VALUES
-('uploads/1698859303_fastura-logo_(1)', 'uploads/1698861669_logo-white');
+INSERT INTO `customer_details` (`id`, `name`, `branch_code`, `branch`, `namegroup`, `client_id`, `centre_name`, `dob`, `gender`, `occupation`, `app_relation`, `address`, `phone_number`, `additional_phone_number`, `marital_status`, `religion`, `co_applicant_name`, `co_applicant_dob`, `co_applicant_gender`, `co_applicant_app_relation`, `co_applicant_address`, `father_name`, `father_dob`, `father_app_relation`, `father_address`, `applicant_photo`, `applicant_photo2`, `aadhar_photo`, `ration_photo`, `co_applicant_photo`, `co_applicant_aadhar`, `co_applicant_ration`, `created_date`) VALUES
+(1, 'Syed Akmal', 'demo', 'demo', '', 'demo', 'demo', '', 'Male', 'Business', '', '36,KVR nagar, Mahalakshmi Nagar, K.Pudur, Madurai, Tamilnadu', '9489550848', '', '', '', '', '', '', '', '', 'demo', '', '', '', '1704010697_AadharPhoto.jpeg', '1704010697_ApplicantPhoto.png', '1704010697_fastura-logo_(1).png', '1704010697_panathottam.jpg', '', '', '', '2023-12-31');
 
 -- --------------------------------------------------------
 
@@ -150,6 +138,7 @@ CREATE TABLE IF NOT EXISTS `loan` (
   `id` int NOT NULL AUTO_INCREMENT,
   `customer_id` int NOT NULL,
   `loan_amount` varchar(255) NOT NULL,
+  `totalloanamount` varchar(100) NOT NULL,
   `loan_period` varchar(100) NOT NULL,
   `loan_cycle` varchar(100) NOT NULL,
   `numberLoan` varchar(255) NOT NULL,
@@ -163,7 +152,14 @@ CREATE TABLE IF NOT EXISTS `loan` (
   `loanofficer_signature` varchar(255) NOT NULL,
   `loan_status` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `loan`
+--
+
+INSERT INTO `loan` (`id`, `customer_id`, `loan_amount`, `totalloanamount`, `loan_period`, `loan_cycle`, `numberLoan`, `outstanding`, `paid`, `created_on`, `witness_signature_1`, `witness_signature_2`, `applicant_signature`, `co_applicant_signature`, `loanofficer_signature`, `loan_status`) VALUES
+(1, 1, '1000', '1200', '7', 'monthly', '', '', '', '2024-01-01', '', '', '', '', '', 'completed');
 
 -- --------------------------------------------------------
 
@@ -227,7 +223,15 @@ CREATE TABLE IF NOT EXISTS `term` (
   `collectionDate` varchar(100) NOT NULL,
   `status` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `term`
+--
+
+INSERT INTO `term` (`id`, `loan_id`, `customer_id`, `term`, `amount`, `collectionDate`, `status`) VALUES
+(1, 1, 1, '1', '500', '2024-01-01', 'Paid'),
+(2, 1, 1, '2', '700', '2024-01-01', 'Paid');
 
 -- --------------------------------------------------------
 

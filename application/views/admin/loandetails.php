@@ -2,6 +2,7 @@
 $id = $customerinfo->id;
 $name = $customerinfo->name;
 $applicant_photo = $customerinfo->applicant_photo;
+$applicant_photo2 = $customerinfo->applicant_photo2;
 $aadhar_photo = $customerinfo->aadhar_photo;
 $ration_photo = $customerinfo->ration_photo;
 $phone = $customerinfo->phone_number;
@@ -105,9 +106,6 @@ $phone = $customerinfo->phone_number;
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Add your form fields here -->
-                <!-- Example: -->
-                <!-- <form action="<?= base_url('Customer/addLoanDetails'); ?>" method="post"> -->
                 <form role="form" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" id="addloan" enctype="multipart/form-data" action="<?php echo base_url() ?>Customer/saveloan" method="post" role="form">
 
                     <div class="form-group m-form__group row">
@@ -118,6 +116,14 @@ $phone = $customerinfo->phone_number;
                             <input type="number" class="form-control m-input" id="loanamount" name="loanamount" placeholder="Enter Loan Amount " required>
                             <input type="hidden" name="id" id="id" value="<?= $id ?>">
                             <input type="hidden" name="loan_status" id="loan_status" value="in_process">
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <label class="col-lg-4 col-form-label">
+                            Total Loan Amount(Intrest): <small style="color: red;">*</small>
+                        </label>
+                        <div class="col-lg-7">
+                            <input type="number" class="form-control m-input" id="totalloanamount" name="totalloanamount" placeholder="Enter Total Loan Amount " required>
                         </div>
                     </div>
 
@@ -203,7 +209,6 @@ $phone = $customerinfo->phone_number;
 
                 </form>
             </div>
-            <!-- Add other modal sections as needed -->
         </div>
     </div>
 </div>
@@ -218,10 +223,8 @@ $phone = $customerinfo->phone_number;
                     <tr>
                         <th>ID</th>
                         <th>Loan Amount</th>
+                        <th>Total Loan Amount</th>
                         <th>Loan Cycle</th>
-                        <!-- <th>Number Loan</th>
-                        <th>Outstanding</th>
-                        <th>Paid</th> -->
                         <th>Created On</th>
                         <th>Status</th>
                         <th>Withness Signature 1</th>
@@ -229,7 +232,6 @@ $phone = $customerinfo->phone_number;
                         <th>Applicant Signature</th>
                         <th>Co-Applicant Signature</th>
                         <th>Loan Officer Signature</th>
-                        <!-- <th>Created On</th> -->
                         <th>Action</th>
 
 
@@ -244,97 +246,6 @@ $phone = $customerinfo->phone_number;
 </div>
 
 <script>
-    // Initialize DataTable with search, pagination, and export options
-
-    // $(document).ready(function() {
-    //     $('#loanTable').DataTable({
-    //         // "order": [
-    //         //   [0, "desc"]
-    //         // ],
-
-
-    //         "processing": true,
-    //         "serverSide": true,
-    //         "ajax": {
-    //             "url": "<?= base_url('Customer/loanDetails'); ?>",
-    //             "type": "POST",
-    //         },
-    //         "columns": [{
-    //                 "data": "loan_amount",
-    //                 "orderable": false
-    //             },
-    //             {
-    //                 "data": "loan_cycle",
-    //                 "orderable": false
-    //             },
-    //             // {
-    //             //     "data": "numberLoan",
-    //             //     "orderable": false
-    //             // },
-    //             // {
-    //             //     "data": "outstanding",
-    //             //     "orderable": false
-    //             // },
-    //             // {
-    //             //     "data": "paid",
-    //             //     "orderable": false
-    //             // },
-    //             {
-    //                 "data": "created_on",
-    //                 "orderable": false
-    //             },
-    //             {
-    //                 "data": "withness_signature_1",
-    //                 "render": function(data, type, row) {
-    //                     return '<img src="' + data + '" alt="Withness Signature 1" width="100" class="img-fluid">';
-    //                 },
-    //                 "orderable": false
-
-    //             },
-    //             {
-    //                 "data": "withness_signature_2",
-    //                 "render": function(data, type, row) {
-    //                     return '<img src="' + data + '" alt="Withness Signature 2" width="100" class="img-fluid">';
-    //                 },
-    //                 "orderable": false
-
-    //             },
-    //             {
-    //                 "data": "applicant_signature",
-    //                 "render": function(data, type, row) {
-    //                     return '<img src="' + data + '" alt="Applicant Signature" width="100" class="img-fluid">';
-    //                 },
-    //                 "orderable": false
-
-    //             },
-    //             {
-    //                 "data": "co_applicant_signature",
-    //                 "render": function(data, type, row) {
-    //                     return '<img src="' + data + '" alt="Co-Applicant Signature" width="100" class="img-fluid">';
-    //                 },
-    //                 "orderable": false
-
-    //             },
-    //             {
-    //                 "data": "loanofficer_signature",
-    //                 "render": function(data, type, row) {
-    //                     return '<img src="' + data + '" alt="Loan Officer Signature" width="100" class="img-fluid">';
-    //                 },
-    //                 "orderable": false
-
-    //             },
-
-    //             // {
-    //             //     "data": "loan","orderable": false
-    //             // },
-    //             {
-    //                 "data": "actions",
-    //                 "orderable": false
-    //             }
-
-    //         ]
-    //     });
-    // });
     $(document).ready(function() {
         var loanData = <?php echo json_encode($loanInfo); ?>;
         var table = $('#loanTable').DataTable({
@@ -346,6 +257,10 @@ $phone = $customerinfo->phone_number;
                 },
                 {
                     data: "loan_amount",
+                    "orderable": false
+                },
+                {
+                    data: "totalloanamount",
                     "orderable": false
                 },
                 {

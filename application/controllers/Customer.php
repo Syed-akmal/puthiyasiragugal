@@ -15,7 +15,6 @@ class Customer extends CI_Controller
     {
         $this->load->view('admin/header');
         $this->load->view('admin/footer');
-        // $this->load->view('login');
     }
 
     public function addCustomerDetails()
@@ -32,13 +31,6 @@ class Customer extends CI_Controller
         $this->load->library('upload');
         $this->load->library('Form_validation');
         $this->form_validation->set_rules('name', 'Customer Name', 'required');
-        // $this->form_validation->set_rules('branch_code', 'Branch Code ', 'required');
-        // $this->form_validation->set_rules('branch', 'Branch ', 'required');
-        // $this->form_validation->set_rules('client_id', 'Client Id ', 'required');
-        // $this->form_validation->set_rules('centre_name', 'Centre Name ', 'required');
-        // $this->form_validation->set_rules('phone', 'Phone Number ', 'required');
-        // $this->form_validation->set_rules('loan_amount', 'Loan Amount ', 'required');
-        // $this->form_validation->set_rules('address', 'Address ', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             redirect('Customer/CustomerDetails');
@@ -76,8 +68,6 @@ class Customer extends CI_Controller
             $phone = $this->input->post('phone');
             $additional_phone = $this->input->post('additional_phone');
             $religion = $this->input->post('religion');
-            // $loan_amount = $this->input->post('loan_amount');
-            // $loan_cycle = $this->input->post('loan_cycle');
             $DOB = $this->input->post('DOB');
             $gender = $this->input->post('gender');
             $AppRelation = $this->input->post('AppRelation');
@@ -91,16 +81,7 @@ class Customer extends CI_Controller
             $Father_DOB = $this->input->post('Father_DOB');
             $Father_AppRelation = $this->input->post('Father_AppRelation');
             $father_address = $this->input->post('father_address');
-            // $applicant_photo = $this->input->post('applicant_photo');
-            // $aadhar_photo = $this->input->post('aadhar_photo');
-            // $ration_photo = $this->input->post('ration_photo');
-            // $co_applicant_photo = $this->input->post('co_applicant_photo');
-            // $co_aadhar_photo = $this->input->post('co_aadhar_photo');
-            // $co_ration_photo = $this->input->post('co_ration_photo');
             $occupation = $this->input->post('occupation');
-            // $numberLoan = $this->input->post('numberLoan');
-            // $outstanding = $this->input->post('outstanding');
-            // $Paid = $this->input->post('Paid');
 
             $CustomerDetails = array(
                 'name' => $name,
@@ -114,8 +95,6 @@ class Customer extends CI_Controller
                 'phone_number' => $phone,
                 'additional_phone_number' => $additional_phone,
                 'religion' => $religion,
-                // 'loan_amount' => $loan_amount,
-                // 'loan_cycle' => $loan_cycle,
                 'dob' => $DOB,
                 'gender' => $gender,
                 'app_relation' => $AppRelation,
@@ -137,9 +116,6 @@ class Customer extends CI_Controller
                 'co_applicant_aadhar' => $uploaded_images['co_aadhar_photo'],
                 'co_applicant_ration' => $uploaded_images['co_ration_photo'],
                 'occupation' => $occupation,
-                // 'numberLoan' => $numberLoan,
-                // 'outstanding' => $outstanding,
-                // 'Paid' => $Paid,
             );
 
             if ($this->db->insert('customer_details', $CustomerDetails)) {
@@ -155,12 +131,7 @@ class Customer extends CI_Controller
     public function CustomerDetails()
     {
         $this->load->view('admin/header');
-        // $this->load->view('admin/customerdetails');
-        // $data['customer_details'] = $this->Customer_model->getCustomerDetails(); // Replace 'your_model' with the actual model name and method to retrieve customer details from the database
-
-        // $this->load->view('admin/customerdetails', $data);
         $this->load->view('admin/customerdetails');
-
         $this->load->view('admin/footer');
     }
 
@@ -216,8 +187,6 @@ class Customer extends CI_Controller
         $phone = $this->input->post('phone');
         $additional_phone = $this->input->post('additional_phone');
         $religion = $this->input->post('religion');
-        // $loan_amount = $this->input->post('loan_amount');
-        // $loan_cycle = $this->input->post('loan_cycle');
         $DOB = $this->input->post('DOB');
         $gender = $this->input->post('gender');
         $AppRelation = $this->input->post('AppRelation');
@@ -231,16 +200,7 @@ class Customer extends CI_Controller
         $Father_DOB = $this->input->post('Father_DOB');
         $Father_AppRelation = $this->input->post('Father_AppRelation');
         $father_address = $this->input->post('father_address');
-        // $applicant_photo = $this->input->post('applicant_photo');
-        // $aadhar_photo = $this->input->post('aadhar_photo');
-        // $ration_photo = $this->input->post('ration_photo');
-        // $co_applicant_photo = $this->input->post('co_applicant_photo');
-        // $co_aadhar_photo = $this->input->post('co_aadhar_photo');
-        // $co_ration_photo = $this->input->post('co_ration_photo');
         $occupation = $this->input->post('occupation');
-        // $numberLoan = $this->input->post('numberLoan');
-        // $outstanding = $this->input->post('outstanding');
-        // $Paid = $this->input->post('Paid');
 
         $EditedCustomerDetails = array(
             'name' => $name,
@@ -254,8 +214,6 @@ class Customer extends CI_Controller
             'phone_number' => $phone,
             'additional_phone_number' => $additional_phone,
             'religion' => $religion,
-            // 'loan_amount' => $loan_amount,
-            // 'loan_cycle' => $loan_cycle,
             'dob' => $DOB,
             'gender' => $gender,
             'app_relation' => $AppRelation,
@@ -277,9 +235,6 @@ class Customer extends CI_Controller
             'co_applicant_aadhar' => $uploaded_images['co_aadhar_photo'],
             'co_applicant_ration' => $uploaded_images['co_ration_photo'],
             'occupation' => $occupation,
-            // 'numberLoan' => $numberLoan,
-            // 'outstanding' => $outstanding,
-            // 'Paid' => $Paid,
         );
 
         $result = $this->Customer_model->editCustomerDetails($EditedCustomerDetails, $id);
@@ -293,17 +248,6 @@ class Customer extends CI_Controller
     }
 
 
-    // public function customerloandetails($id = null)
-    // {
-    //     // $this->load->view('header');
-    //     if ($id = null) {
-    //         redirect('Customer/CustomerDetails');
-    //     }
-    //     $data['customerinfo'] = $this->Customer_model->getcustomerinfo($id);
-    //     // $data['loaninfo'] = $this->Customer_model->getloaninfo($id);
-    //     $this->load->view('admin/loandetails');
-    // }
-
     public function customerloandetails($id = NULL)
     {
         $this->load->view('admin/header');
@@ -315,39 +259,6 @@ class Customer extends CI_Controller
         $this->load->view('admin/loandetails', $data);
         $this->load->view('admin/footer');
     }
-    // public function ajaxFetchCustomerDetails()
-    // {
-    //     // $this->load->model('Customer_model');
-    //     $postData = $this->input->post();
-    //     $this->load->model('Customer_model');
-
-    //     $totalRecords = $this->Customer_model->getTotalRecords();
-    //     $filteredRecords = $this->Customer_model->getFilteredRecords($postData);
-
-    //     $customerDetails = $this->Customer_model->getCustomerDetails();
-
-    //     $data = array();
-    //     foreach ($customerDetails as $customer) {
-    //         $data[] = array(
-    //             'name' => $customer['name'],
-    //             'dob' => $customer['dob'],
-    //             'gender' => $customer['gender'],
-    //             'phone_number' => $customer['phone_number'],
-    //             'father_name' => $customer['father_name'],
-    //             'address' => $customer['address'],
-    //             'applicant_photo' => base_url('uploads/' . $customer['applicant_photo']),
-    //             'aadhar_photo' => base_url('uploads/' . $customer['aadhar_photo']),
-    //             // Add other image URLs here
-    //         );
-    //     }
-
-    //     echo json_encode(array(
-    //         "draw" => $postData['draw'],
-    //         "recordsTotal" => $totalRecords,
-    //         "recordsFiltered" => count($filteredRecords),
-    //         "data" => $data
-    //     ));
-    // }
 
     public function ajaxFetchCustomerDetails()
     {
@@ -357,42 +268,6 @@ class Customer extends CI_Controller
 
         echo json_encode($data);
     }
-
-    // public function downloadCustomer($customerId)
-    // {
-    //     // Fetch customer details based on the ID
-    //     $customerDetails = $this->Customer_model->getCustomerDetailsById($customerId);
-
-    //     // Generate and send a download response (you can customize this based on your needs)
-    //     header('Content-Type: application/json');
-    //     header('Content-Disposition: attachment; filename="customer_details.json"');
-    //     echo json_encode($customerDetails);
-    //     exit;
-    // }
-
-    // public function downloadCustomer($customerId)
-    // {
-    //     // Load TCPDF library
-    //     $this->load->library('tcpdf');
-
-    //     // Fetch customer details based on the ID
-    //     $customerDetails = $this->Customer_model->getCustomerDetailsById($customerId);
-
-    //     // Generate PDF content
-    //     $pdfContent = $this->load->view('pdf_template', ['customerDetails' => $customerDetails], true);
-
-    //     // Set the PDF filename
-    //     $pdfFileName = 'customer_details_' . $customerId . '.pdf';
-
-    //     // Create PDF
-    //     $this->tcpdf->SetTitle('Customer Details');
-    //     $this->tcpdf->AddPage();
-    //     $this->tcpdf->writeHTML($pdfContent);
-    //     $this->tcpdf->Output($pdfFileName, 'D'); // 'D' for download
-
-    //     exit;
-    // }
-
     public function getCustomerDetailsById($customerId)
     {
         // Fetch customer details based on the ID
@@ -439,6 +314,7 @@ class Customer extends CI_Controller
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('loanamount', 'Loan Amount', 'required|numeric');
+        $this->form_validation->set_rules('totalloanamount', 'Loan Amount', 'required|numeric');
         $this->form_validation->set_rules('loan_cycle', 'Loan Cycle', 'required');
         $this->form_validation->set_rules('date', 'Loan Date', 'required');
 
@@ -473,6 +349,7 @@ class Customer extends CI_Controller
             // Process other form data
             $id = $this->input->post('id');
             $loanamount = $this->input->post('loanamount');
+            $totalloanamount = $this->input->post('totalloanamount');
             $loan_cycle = $this->input->post('loan_cycle');
             $loan_status = $this->input->post('loan_status');
             $loan_period = $this->input->post('loan_period');
@@ -482,6 +359,7 @@ class Customer extends CI_Controller
             $loanDetails = array(
                 'customer_id' => $id,
                 'loan_amount' => $loanamount,
+                'totalloanamount' => $totalloanamount,
                 'loan_cycle' => $loan_cycle,
                 'loan_status' => $loan_status,
                 'loan_period' => $loan_period,
@@ -548,6 +426,7 @@ class Customer extends CI_Controller
         }
 
         $loanamount = $this->input->post('loanamount');
+        $totalloanamount = $this->input->post('totalloanamount');
         $date = $this->input->post('date');
         $loan_cycle = $this->input->post('loan_cycle');
         $loan_status = $this->input->post('loan_status');
@@ -556,6 +435,7 @@ class Customer extends CI_Controller
 
         $EditedLoanDetails = array(
             'loan_amount' => $loanamount,
+            'totalloanamount' => $totalloanamount,
             'created_on' => $date,
             'loan_cycle' => $loan_cycle,
             'loan_status' => $loan_status,
@@ -701,16 +581,6 @@ class Customer extends CI_Controller
 
 
     ##User Details
-    // public function userdetails()
-    // {
-
-    //         $id = $_GET['id'];
-    //         $this->load->view('admin/header');
-    //         $data['userdetails'] = $this->Customer_model->getuserdetails($id);
-    //         $this->load->view('admin/userdetails', $data);
-    //         $this->load->view('admin/footer');
-
-    // }
 
     public function userdetails($id = NULL)
     {
@@ -724,6 +594,7 @@ class Customer extends CI_Controller
     }
 
     # This command pdf works good ,commended for css and A4 paper size etc,Dont delete it
+
     // public function downloadCustomer($id = NULL)
     // {
         
@@ -815,13 +686,6 @@ class Customer extends CI_Controller
         $this->load->library('upload');
         $this->load->library('Form_validation');
         $this->form_validation->set_rules('name', 'Customer Name', 'required');
-        // $this->form_validation->set_rules('branch_code', 'Branch Code ', 'required');
-        // $this->form_validation->set_rules('branch', 'Branch ', 'required');
-        // $this->form_validation->set_rules('client_id', 'Client Id ', 'required');
-        // $this->form_validation->set_rules('centre_name', 'Centre Name ', 'required');
-        // $this->form_validation->set_rules('phone', 'Phone Number ', 'required');
-        // $this->form_validation->set_rules('loan_amount', 'Loan Amount ', 'required');
-        // $this->form_validation->set_rules('address', 'Address ', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             redirect('Customer/CustomerDetails');
@@ -852,76 +716,21 @@ class Customer extends CI_Controller
             $date = $this->input->post('date');
             $branch_code = $this->input->post('branch_code');
             $branch = $this->input->post('branch');
-            // $namegroup = $this->input->post('namegroup');
-            // $client_id = $this->input->post('client_id');
-            // $centre_name = $this->input->post('centre_name');
-            // $marital_status = $this->input->post('marital_status');
             $phone = $this->input->post('phone');
-            // $additional_phone = $this->input->post('additional_phone');
-            // $religion = $this->input->post('religion');
-            // $loan_amount = $this->input->post('loan_amount');
-            // $loan_cycle = $this->input->post('loan_cycle');
             $DOB = $this->input->post('DOB');
             $gender = $this->input->post('gender');
-            // $AppRelation = $this->input->post('AppRelation');
             $address = $this->input->post('address');
-            // $co_name = $this->input->post('co_name');
-            // $Co_Applicant_DOB = $this->input->post('Co_Applicant_DOB');
-            // $Co_Applicant_gender = $this->input->post('Co_Applicant_gender');
-            // $Co_Applicant_AppRelation = $this->input->post('Co_Applicant_AppRelation');
-            // $co_address = $this->input->post('co_address');
-            // $father_name = $this->input->post('father_name');
-            // $Father_DOB = $this->input->post('Father_DOB');
-            // $Father_AppRelation = $this->input->post('Father_AppRelation');
-            // $father_address = $this->input->post('father_address');
-            // $applicant_photo = $this->input->post('applicant_photo');
-            // $aadhar_photo = $this->input->post('aadhar_photo');
-            // $ration_photo = $this->input->post('ration_photo');
-            // $co_applicant_photo = $this->input->post('co_applicant_photo');
-            // $co_aadhar_photo = $this->input->post('co_aadhar_photo');
-            // $co_ration_photo = $this->input->post('co_ration_photo');
-            // $occupation = $this->input->post('occupation');
-            // $numberLoan = $this->input->post('numberLoan');
-            // $outstanding = $this->input->post('outstanding');
-            // $Paid = $this->input->post('Paid');
 
             $CustomerDetails = array(
                 'name' => $name,
                 'created_date' => $date,
                 'branch_code' => $branch_code,
                 'branch' => $branch,
-                // 'namegroup' => $namegroup,
-                // 'client_id' => $client_id,
-                // 'centre_name' => $centre_name,
-                // 'marital_status' => $marital_status,
                 'phone_number' => $phone,
-                // 'additional_phone_number' => $additional_phone,
-                // 'religion' => $religion,
-                // 'loan_amount' => $loan_amount,
-                // 'loan_cycle' => $loan_cycle,
                 'dob' => $DOB,
                 'gender' => $gender,
-                // 'app_relation' => $AppRelation,
                 'address' => $address,
-                // 'co_applicant_name' => $co_name,
-                // 'co_applicant_dob' => $Co_Applicant_DOB,
-                // 'co_applicant_gender' => $Co_Applicant_gender,
-                // 'co_applicant_app_relation' => $Co_Applicant_AppRelation,
-                // 'co_applicant_address' => $co_address,
-                // 'father_name' => $father_name,
-                // 'father_dob' => $Father_DOB,
-                // 'father_app_relation' => $Father_AppRelation,
-                // 'father_address' => $father_address,
                 'applicant_photo' => $uploaded_images['applicant_photo'],
-                // 'aadhar_photo' => $uploaded_images['aadhar_photo'],
-                // 'ration_photo' => $uploaded_images['ration_photo'],
-                // 'co_applicant_photo' => $uploaded_images['co_applicant_photo'],
-                // 'co_applicant_aadhar' => $uploaded_images['co_aadhar_photo'],
-                // 'co_applicant_ration' => $uploaded_images['co_ration_photo'],
-                // 'occupation' => $occupation,
-                // 'numberLoan' => $numberLoan,
-                // 'outstanding' => $outstanding,
-                // 'Paid' => $Paid,
             );
 
             if ($this->db->insert('saving_customer_details', $CustomerDetails)) {
@@ -937,10 +746,6 @@ class Customer extends CI_Controller
     public function SavingsDetails()
     {
         $this->load->view('admin/header');
-        // $this->load->view('admin/customerdetails');
-        // $data['customer_details'] = $this->Customer_model->getCustomerDetails(); // Replace 'your_model' with the actual model name and method to retrieve customer details from the database
-
-        // $this->load->view('admin/customerdetails', $data);
         $this->load->view('admin/savingsdetails');
 
         $this->load->view('admin/footer');
@@ -1002,76 +807,21 @@ class Customer extends CI_Controller
         $date = $this->input->post('date');
         $branch_code = $this->input->post('branch_code');
         $branch = $this->input->post('branch');
-        // $namegroup = $this->input->post('namegroup');
-        // $client_id = $this->input->post('client_id');
-        // $centre_name = $this->input->post('centre_name');
-        // $marital_status = $this->input->post('marital_status');
         $phone = $this->input->post('phone');
-        // $additional_phone = $this->input->post('additional_phone');
-        // $religion = $this->input->post('religion');
-        // $loan_amount = $this->input->post('loan_amount');
-        // $loan_cycle = $this->input->post('loan_cycle');
         $DOB = $this->input->post('DOB');
         $gender = $this->input->post('gender');
-        // $AppRelation = $this->input->post('AppRelation');
         $address = $this->input->post('address');
-        // $co_name = $this->input->post('co_name');
-        // $Co_Applicant_DOB = $this->input->post('Co_Applicant_DOB');
-        // $Co_Applicant_gender = $this->input->post('Co_Applicant_gender');
-        // $Co_Applicant_AppRelation = $this->input->post('Co_Applicant_AppRelation');
-        // $co_address = $this->input->post('co_address');
-        // $father_name = $this->input->post('father_name');
-        // $Father_DOB = $this->input->post('Father_DOB');
-        // $Father_AppRelation = $this->input->post('Father_AppRelation');
-        // $father_address = $this->input->post('father_address');
-        // $applicant_photo = $this->input->post('applicant_photo');
-        // $aadhar_photo = $this->input->post('aadhar_photo');
-        // $ration_photo = $this->input->post('ration_photo');
-        // $co_applicant_photo = $this->input->post('co_applicant_photo');
-        // $co_aadhar_photo = $this->input->post('co_aadhar_photo');
-        // $co_ration_photo = $this->input->post('co_ration_photo');
-        // $occupation = $this->input->post('occupation');
-        // $numberLoan = $this->input->post('numberLoan');
-        // $outstanding = $this->input->post('outstanding');
-        // $Paid = $this->input->post('Paid');
 
         $EditedSavingsDetails = array(
             'name' => $name,
             'created_date' => $date,
             'branch_code' => $branch_code,
             'branch' => $branch,
-            // 'namegroup' => $namegroup,
-            // 'client_id' => $client_id,
-            // 'centre_name' => $centre_name,
-            // 'marital_status' => $marital_status,
             'phone_number' => $phone,
-            // 'additional_phone_number' => $additional_phone,
-            // 'religion' => $religion,
-            // 'loan_amount' => $loan_amount,
-            // 'loan_cycle' => $loan_cycle,
             'dob' => $DOB,
             'gender' => $gender,
-            // 'app_relation' => $AppRelation,
             'address' => $address,
-            // 'co_applicant_name' => $co_name,
-            // 'co_applicant_dob' => $Co_Applicant_DOB,
-            // 'co_applicant_gender' => $Co_Applicant_gender,
-            // 'co_applicant_app_relation' => $Co_Applicant_AppRelation,
-            // 'co_applicant_address' => $co_address,
-            // 'father_name' => $father_name,
-            // 'father_dob' => $Father_DOB,
-            // 'father_app_relation' => $Father_AppRelation,
-            // 'father_address' => $father_address,
             'applicant_photo' => $uploaded_images['applicant_photo'],
-            // 'aadhar_photo' => $uploaded_images['aadhar_photo'],
-            // 'ration_photo' => $uploaded_images['ration_photo'],
-            // 'co_applicant_photo' => $uploaded_images['co_applicant_photo'],
-            // 'co_applicant_aadhar' => $uploaded_images['co_aadhar_photo'],
-            // 'co_applicant_ration' => $uploaded_images['co_ration_photo'],
-            // 'occupation' => $occupation,
-            // 'numberLoan' => $numberLoan,
-            // 'outstanding' => $outstanding,
-            // 'Paid' => $Paid,
         );
 
         $result = $this->Customer_model->editSavingsDetails($EditedSavingsDetails, $id);
@@ -1312,42 +1062,5 @@ class Customer extends CI_Controller
         $data['userdetails'] = $this->Customer_model->getsavingsuserdetails($id);
         $this->load->view('admin/usersavingsdetails', $data);
         $this->load->view('admin/footer');
-    }
-
-    public function upload_image()
-    {
-        $config['upload_path'] = './uploads/'; // Specify the upload directory
-        $config['allowed_types'] = 'gif|jpg|png|jpeg'; // Allowed image file types
-        $config['max_size'] = 2048; // Maximum file size in kilobytes (2MB)
-        $config['file_name'] = time() . '_' . $_FILES['image']['name']; // Set file name to current timestamp + original file name
-        $config['file_name'] = time() . '_' . $_FILES['demo']['name']; // Set file name to current timestamp + original file name
-        $this->load->library('upload', $config);
-
-        if (!$this->upload->do_upload('image') && !$this->upload->do_upload('demo')) {
-            $error = array('error' => $this->upload->display_errors());
-            // Handle the upload error, if any
-        } else {
-            $data = $this->upload->data();
-            $image_path = 'uploads/' . $data['file_name']; // Get the uploaded image path
-            $demo = 'uploads/' . $data['file_name']; // Get the uploaded image path
-
-            // Insert the image path into the "demo" table in the database
-            $this->Customer_model->insert_image($image_path, $demo);
-
-            // Redirect or show a success message
-            redirect('customer/addCustomerDetails');
-        }
-    }
-
-
-    public function view_image()
-    {
-        // Retrieve the image path and demo from the database
-        $image_data = $this->Customer_model->get_image_data(); // Implement this method in your model to retrieve image path and demo from the database
-
-        $data['applicant_photo'] = $image_data['applicant_photo'];
-        $data['aadhar_photo'] = $image_data['aadhar_photo'];
-
-        $this->load->view('admin/view_image', $data);
     }
 }

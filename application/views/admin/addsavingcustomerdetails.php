@@ -39,14 +39,7 @@
                         <input type="text" class="form-control m-input" id="branch" name="branch" placeholder="Enter Branch " required>
                     </div>
                 </div>
-                <!-- <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                        Name Group:
-                    </label>
-                    <div class="col-lg-7">
-                        <input type="text" class="form-control m-input" id="namegroup" name="namegroup" placeholder="Enter Name Group ">
-                    </div>
-                </div> -->
+
                 <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
                         Customer Name: <small style="color: red;">*</small>
@@ -123,14 +116,6 @@
     $(document).ready(function() {
         var currentSection = 1;
         var formSections = $(".form-section");
-
-        // $(".next-section").click(function() {
-        //     if (currentSection < formSections.length) {
-        //         formSections.eq(currentSection - 1).hide();
-        //         currentSection++;
-        //         formSections.eq(currentSection - 1).show();
-        //     }
-        // });
 
         $(".next-section").click(function() {
             if (currentSection < formSections.length) {

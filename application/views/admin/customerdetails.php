@@ -111,13 +111,6 @@
                     "data": "actions",
                     "orderable": false
                 }
-                // {
-                //     "data": "aadhar_photo",
-                //     "render": function(data, type, row) {
-                //         return '<img src="' + data + '" alt="Aadhar Photo" width="100">';
-                //     }
-                // },
-                // Add other image columns here
             ]
         });
     });
